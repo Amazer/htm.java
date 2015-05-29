@@ -26,6 +26,11 @@ import java.util.List;
 
 import org.numenta.nupic.Connections;
 
+/****
+ * ½ü¶ËÍ»´¥
+ * @author Zuo
+ *
+ */
 public class ProximalDendrite extends Segment {
 	private int index;
 	private Pool pool;

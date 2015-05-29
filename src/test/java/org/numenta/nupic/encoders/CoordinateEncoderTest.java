@@ -159,6 +159,7 @@ public class CoordinateEncoderTest {
 		
 		CoordinateOrder mock = new CoordinateOrder() {
 			@Override public double orderForCoordinate(int[] coordinate) {
+				//计算coordinate的平均数
 				return  ArrayUtils.sum(coordinate) / 5.0d;
 			}
 			

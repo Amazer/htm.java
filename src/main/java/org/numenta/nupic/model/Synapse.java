@@ -28,7 +28,7 @@ import org.numenta.nupic.research.TemporalMemory;
 /**
  * Represents a connection with varying strength which when above 
  * a configured threshold represents a valid connection. 
- * 
+ *<br>突触。变化着的strength的一个连接，which 当大于一个给定的阈值是，是一个有效的连接
  * IMPORTANT: 	For DistalDendrites, there is only one synapse per pool, so the
  * 				synapse's index doesn't really matter (in terms of tracking its
  * 				order within the pool. In that case, the index is a global counter
@@ -37,7 +37,9 @@ import org.numenta.nupic.research.TemporalMemory;
  * 				For ProximalDendrites, there are many synapses within a pool, and in
  * 				that case, the index specifies the synapse's sequence order within
  * 				the pool object, and may be referenced by that index.
- *    
+ *<br>重点：
+ *<br>远端树突的pool中只有一个突触
+ *<br>近端树突的pool中有多个突触，index作为顺序order    
  * 
  * @author Chetan Surpur
  * @author David Ray

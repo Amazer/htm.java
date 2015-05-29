@@ -36,7 +36,9 @@ import org.numenta.nupic.util.ArrayUtils;
  * to a {@code Pool} to retrieve relevant values. In addition, that
  * same pool can be referenced from the Connections object externally
  * which will update the Synapse's internal reference.
- * 
+ * <br>Pool,有bound的突触值的container。可以从突触和connections中引用到。
+ * 所有的突触都会在pool中有一个引用来重新得到相关的values.
+ * 另外，同一个pool可以被外部连接着的object引用到，外部连接着的object会更新内部突触的引用
  * @author David Ray
  * @see Synapse
  * @see Connections
@@ -115,6 +117,7 @@ public class Pool {
 	
 	/**
 	 * Returns an array of permanence values
+	 * <br>返回稀疏永久值的array，倒序的。
 	 * @return
 	 */
 	public double[] getSparsePermanences() {
@@ -129,8 +132,9 @@ public class Pool {
 	
 	/**
 	 * Returns a dense array representing the potential pool permanences
-	 * 
+	 * <br>返回密集array for 潜在pool的永久值
 	 * Note: Only called from tests for now...
+	 * <br>注意：目前只在tests中用到
 	 * @param c
 	 * @return
 	 */

@@ -78,7 +78,7 @@ public class CoordinateEncoder extends Encoder<Tuple> implements CoordinateOrder
 	/**
 	 * Returns coordinates around given coordinate, within given radius.
      * Includes given coordinate.
-     *
+     *<br>返回所给坐标在某个半径范围内的其他坐标。包括做给坐标
 	 * @param coordinate	Coordinate whose neighbors to find
 	 * @param radius		Radius around `coordinate`
 	 * @return
@@ -106,11 +106,13 @@ public class CoordinateEncoder extends Encoder<Tuple> implements CoordinateOrder
 
 	/**
 	 * Returns the top W coordinates by order.
-	 *
+	 *<b>按顺序返回前W个坐标
 	 * @param co			Implementation of {@link CoordinateOrder}
 	 * @param coordinates	A 2D array, where each element
                             is a coordinate
+                            <hr>坐标是一个2d数组的坐标
 	 * @param w				(int) Number of top coordinates to return
+	 * <hr> 返回前w个
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -132,7 +134,7 @@ public class CoordinateEncoder extends Encoder<Tuple> implements CoordinateOrder
 
 	/**
 	 * Returns the order for a coordinate.
-	 *
+	 *<hr>返回一个坐标的order([0,1)之间的order
 	 * @param coordinate	coordinate array
 	 *
 	 * @return	A value in the interval [0, 1), representing the
@@ -146,7 +148,7 @@ public class CoordinateEncoder extends Encoder<Tuple> implements CoordinateOrder
 
 	/**
 	 * Returns the order for a coordinate.
-	 *
+	 *<h>返回坐标的int order，作为坐标的bit值
 	 * @param coordinate	coordinate array
 	 * @param n				the number of available bits in the SDR
 	 *
@@ -159,15 +161,20 @@ public class CoordinateEncoder extends Encoder<Tuple> implements CoordinateOrder
 
 	/**
 	 * {@inheritDoc}
+	 * <br>inputData的第一个值是坐标值，第二个值是范围半径
+	 * <br>结果将返回到output中
+	 * <br>将坐标值某范围内的前w个坐标编码成bit（int）输出
 	 */
 	@Override
 	public void encodeIntoArray(Tuple inputData, int[] output) {
+		//step1,获取坐标范围内的坐标
 		List<int[]> neighs = neighbors((int[])inputData.get(0), (double)inputData.get(1));
+		//step2,讲List<int[]>的相邻坐标转换成int[][]二维数组的
 		int[][] neighbors = new int[neighs.size()][];
 		for(int i = 0;i < neighs.size();i++) neighbors[i] = neighs.get(i);
-
+		 //step3,获得相邻坐标中的前w个，作为winners
 		int[][] winners = topWCoordinates(this, neighbors, w);
-
+		//step4,将每个winners坐标的bit值获取到，并按顺序输出
 		for(int i = 0;i < winners.length;i++) {
 			int bit = bitForCoordinate(winners[i], n);
 			output[bit] = 1;

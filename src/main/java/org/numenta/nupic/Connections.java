@@ -49,8 +49,11 @@ import org.numenta.nupic.util.SparseObjectMatrix;
  * Contains the definition of the interconnected structural state of the {@link SpatialPooler} and 
  * {@link TemporalMemory} as well as the state of all support structures 
  * (i.e. Cells, Columns, Segments, Synapses etc.). 
- * 
+ * <br>connections定义了空间池中所有的有联系的结构状态，
+ * 也定义了时间记忆中的多有支持的结构状态
+ * <br>
  * In the separation of data from logic, this class represents the data/state. 
+ * <br>在从逻辑上分开的数据中，这个类代表着数据/状态
  */
 public class Connections {
 	/////////////////////////////////////// Spatial Pooler Vars ///////////////////////////////////////////
@@ -85,7 +88,10 @@ public class Connections {
     public int iterationNum = 0;
     public int iterationLearnNum = 0;
     
-    /** A matrix representing the shape of the input. */
+    /** A matrix representing the shape of the input. 
+     * <br>稀疏矩阵，表现了输入形式
+     * 
+     * */
     protected SparseMatrix<?> inputMatrix;
     /**
      * Store the set of all inputs that are within each column's potential pool.
@@ -100,11 +106,14 @@ public class Connections {
      * the potentialPool matrix is stored using the SparseBinaryMatrix
      * class, to reduce memory footprint and computation time of algorithms that
      * require iterating over the data structure.
+     * 
+     * <br>物体稀疏矩阵</br>
      */
     private SparseObjectMatrix<Pool> potentialPools;
     /**
      * Initialize a tiny random tie breaker. This is used to determine winning
      * columns where the overlaps are identical.
+     * <br> tie breaker:[计]连接中断器
      */
     private double[] tieBreaker;
     /** 
@@ -112,6 +121,7 @@ public class Connections {
      * a sum of each row of 'connectedSynapses'. again, while this
      * information is readily available from 'connectedSynapses', it is
      * stored separately for efficiency purposes.
+     * <br>
      */
     private SparseBinaryMatrix connectedCounts;
     /**

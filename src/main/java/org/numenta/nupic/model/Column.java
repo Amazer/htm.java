@@ -151,9 +151,11 @@ public class Column {
     
     /**
      * Sets the permanences on the {@link ProximalDendrite} {@link Synapse}s
-     * 
-     * @param c				the {@link Connections} memory object
-     * @param permanences	floating point degree of connectedness
+     * <br>向近端树突的突触设定固定值</br>
+     * @param c				the {@link Connections} memory object 
+     * <br>记忆联系对象</br>
+     * @param permanences	floating point degree of connectedness 
+     * <br>连接程度的浮点数</br>
      */
     public void setProximalPermanences(Connections c, double[] permanences) {
     	proximalDendrite.setPermanences(c, permanences);
@@ -161,9 +163,13 @@ public class Column {
     
     /**
      * Sets the permanences on the {@link ProximalDendrite} {@link Synapse}s
-     * 
+     * <br>向远端树突的突触设定固定值</br>
      * @param c				the {@link Connections} memory object
+     * <br>记忆连接对象</br>
      * @param permanences	floating point degree of connectedness
+     * <br>固定值</br>
+     * @param indexes
+     * <br>接收固定值的索引</br>
      */
     public void setProximalPermanencesSparse(Connections c, double[] permanences, int[] indexes) {
     	proximalDendrite.setPermanences(c, permanences, indexes);
@@ -172,8 +178,9 @@ public class Column {
     /**
      * Delegates the call to set synapse connected indexes to this 
      * {@code Column}'s {@link ProximalDendrite}
-     * @param c
-     * @param connections
+     * <br>设置与远端数量连接的突触的索引</br>
+     * @param c 连接
+     * @param connections 连接值
      */
     public void setProximalConnectedSynapsesForTest(Connections c, int[] connections) {
     	proximalDendrite.setConnectedSynapsesForTest(c, connections);
